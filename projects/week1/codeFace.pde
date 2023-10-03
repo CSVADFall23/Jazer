@@ -1,0 +1,16 @@
+size(600, 600);
+background(0, 0, 0);
+rectMode(CENTER);
+fill(255, 255, 0);
+translate(width/2, height/2);
+circle(0, 0, 500);
+fill(100, 100, 100);
+arc(0, 75, 300, 150, 0, PI, CHORD);
+fill(255, 60, 0);
+arc(0, 75, 175, 300, 0, PI, CHORD);
+noFill();
+arc(-95, -30, 110, 75, PI + PI/12, 2*PI - PI/12, OPEN);
+fill(255, 255,255);
+circle(90, -60, 125);
+fill(0, 0, 0);
+circle(90, -60, 40);
