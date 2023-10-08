@@ -28,5 +28,6 @@ for(int j = 0; j< 2*vWhy;j++){
     }
   }
 // endRecord();
+//save("data/hitomezashi10.png");
 }
  
