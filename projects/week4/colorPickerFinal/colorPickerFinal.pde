@@ -7,7 +7,7 @@ int vor = 0;
 int balls = 1;
 PGraphics palette;
 ArrayList<Pnt> pnts = new ArrayList<Pnt>();
-int pics = 0;
+
 PFont f;
 
 void setup(){
@@ -31,11 +31,7 @@ void draw(){
   drawPalette();
   image(palette, 0, 0); 
 
-  //if(balls ==1){
-  // textAlign(CENTER);
-  // textSize(20);
-  // text("click on a color to release a ball", 400, 800);
-  //}
+  
   if(mouseY < 200){
     colorMode(HSB, 1.0, 1.0, 1.0);
       float normI = float(mouseX)/W;
@@ -120,8 +116,8 @@ void mousePressed(){
      pnts.add(new Pnt(initPos, initOldP, initCol, initDia, initSides, initGrav, initMass, initBorder));
         }
      else { 
-       save("colorPicker_" + pics + ".png");
-    pics++;
+       save("color-" + day() + "_" + month() + "_" + year() + "-" + hour() + "." + minute() + "." + second() + ".png");
+    
       }
 }
 
@@ -275,8 +271,8 @@ void keyPressed() {
   pnts.clear();  
   }
   if(key==112){
-    save("colorPicker_" + pics + ".png");
-    pics++;
+    save("color-" + day() + "_" + month() + "_" + year() + "-" + hour() + "." + minute() + "." + second() + ".png");
+    
   }
 }
 // collision from u/Numsgil https://www.gamedev.net/forums/topic/370826-sphere-collision-response-with-verlet/
