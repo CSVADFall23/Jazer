@@ -7,7 +7,9 @@ int vor = 0;
 int balls = 1;
 PGraphics palette;
 ArrayList<Pnt> pnts = new ArrayList<Pnt>();
-
+int shading = 0;
+int dark = 0;
+int inside = 0;
 PFont f;
 
 void setup(){
@@ -53,9 +55,9 @@ void draw(){
         fill(.4, 1, 1);
         textAlign(CENTER);
         textSize(20);
-        text("click on a color to release a circle", 400, 750);
-        text("1-9 change the size of the circle", 400, 770);
-        text("press v for voronoi    press x to clear    press p or click down here to save", 400, 790);
+        text("click on a color to release a circle      press x to clear", 400, 750);
+        text("1-9 change the size of the circle      press v for voronoi", 400, 770);
+        text("press s to change lighting      press p or click down here to save", 400, 790);
        
       }
     }
@@ -154,6 +156,7 @@ void keyPressed() {
    R = 20;
    S = 40;
    D = 20;
+   shading = 0;
   }
    if(key==118){
    for(Pnt p : pnts){
@@ -163,6 +166,7 @@ void keyPressed() {
    vor = 1;
    balls = 0;
    D = 40;
+   shading = 0;
     }
   if(key==49 && balls==1){
   R = 20;
@@ -272,8 +276,14 @@ void keyPressed() {
   }
   if(key==112){
     save("color-" + day() + "_" + month() + "_" + year() + "-" + hour() + "." + minute() + "." + second() + ".png");
-    
   }
+  if(key==115){
+   shading++;
+   shading = shading%3;
+   }
+   
+  
+  
 }
 // collision from u/Numsgil https://www.gamedev.net/forums/topic/370826-sphere-collision-response-with-verlet/
 void collide(){
@@ -332,7 +342,31 @@ class Pnt {
     beginShape(TRIANGLE_STRIP);
     for (int i=0; i<this.sides; i++) {
        float theta = TWO_PI / this.sides;
+       if(shading == 0 || shading == 2 && balls == 1){
+        fill(this.col.x, this.col.y, this.col.z);
+       }
+       else if(shading == 1 && balls == 1){
+       fill(1.0, .0, 1.0);
+       }
+       else if(vor == 1){
+        fill(this.col.x, this.col.y, this.col.z);
+       }
        vertex(0, 0, 0);
+       
+       if(shading == 0){
+        fill(this.col.x, this.col.y, this.col.z);
+       }
+       else if(shading == 1){
+      fill(this.col.x, this.col.y, this.col.z);
+       }
+       
+       else if(shading == 2 && balls == 1){
+         fill(0);
+       }
+       else if(vor == 1){
+        fill(this.col.x, this.col.y, this.col.z);
+       }
+         
        vertex(this.border * cos(theta*i), this.border * sin(theta*i), -this.border);
        vertex(this.border * cos(theta*(i+1)), this.border * sin(theta*(i+1)), -this.border);
     endShape();
