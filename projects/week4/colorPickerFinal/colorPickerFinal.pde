@@ -44,9 +44,10 @@ void draw(){
        circle(mouseX, mouseY, 40); 
        fill(.4, 1, 1);
         textAlign(CENTER);
-        textSize(20);
-        text("1-9 change the look of the voronoi", 400, 770);
-        text("press c for circles    press x to clear    press p or click down here to save", 400, 790);
+        textSize(30);
+        text("press c for circles      press x to clear", 400, 730);  
+        text("1-9 change the look of the voronoi", 400, 760);
+        text("press p or click down here to save", 400, 790);
       }
       else if(balls == 1){
         circle(mouseX, mouseY, 40);
@@ -54,9 +55,9 @@ void draw(){
         arc(400, 240, R*2, R*2, 0, PI);     
         fill(.4, 1, 1);
         textAlign(CENTER);
-        textSize(20);
-        text("click on a color to release a circle      press x to clear", 400, 750);
-        text("1-9 change the size of the circle      press v for voronoi", 400, 770);
+        textSize(30);
+        text("click on a color to release a circle      press x to clear", 400, 730);
+        text("1-9 change the size of the circle      press v for voronoi", 400, 760);
         text("press s to change lighting      press p or click down here to save", 400, 790);
        
       }
