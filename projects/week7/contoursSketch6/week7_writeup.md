@@ -1,0 +1,6 @@
+## week 7
+I chose to make something procedural for this assignment. I wanted to make a sketch that used progressively smaller repetitions of a shape to create a sense of depth. I also wanted to use noise that somehow started and ended with the same value, in order to create a closed loop. I knew the approach would include moving through a higher dimensional noise space in a circular fashion. Since I wanted a 2D loop I would need a 3D noise space to move-through. I got a little ways down this path before I realized a simpler way to achieve the result I wanted. Since I was just drawing lines between points in a relative circle, I could save the first point and connect the last to it with another line. So I went that route for this assignment, though I can imagine applying the original approach in the future. 
+
+
+To make the loops I offset a circle using a higher frequency sine wave. When this shape was repeated at increasingly smaller scale the result looked a bit like a spider’s web or broken glass. I added lines by storing points from consecutive  circular passes and drawing lines between. I added watch-like hands, since I thought I would be a cool looking watch face, partially inspired by Payton’s project in 200C.  
+
