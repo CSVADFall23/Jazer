@@ -1,11 +1,11 @@
 import processing.pdf.*;
 
-float blck = 25.0;
+float blck = 10.0;
 float sq3 = sqrt(3.0);
 int numLayer = 25;
 
 void setup() {
-  size(1500, 2200, P3D);
+  size(600, 900, P3D);
   ortho(-width / 3, width / 3, height / 2, -height / 2, -2200, 2200);
   pixelDensity(2);
   fill(255, 255, 255);
@@ -17,7 +17,7 @@ void draw() {
   if(frameCount<2){
   //beginRaw(PDF, "data/isoCubes" + ":" + month() + ":" + day() + "_" + year() + ":" + hour() + "." + minute() + "." + second() + ".pdf");
  
-  translate(width/2, height/2 - 360, -500);
+  translate(width/2, height/2 - 175, -500);
   rotateX(PI/4);
   rotateY(-PI/4);
   //columnDraw();
@@ -74,6 +74,91 @@ void contSurf (){
   } 
 }
 
+
+
+void drawColumnShell(float hex, float why, float zee, float bottom){
+      push();
+      translate(hex*blck, bottom*blck, zee*blck);
+      println("Translation:", hex*blck, bottom*blck, zee*blck);
+      float fade = why/(blck*numLayer);
+      strokeWeight(1);//30  - 20*fade*fade*fade);
+      
+      
+      
+      beginShape(QUAD);
+      //fill(255, 0, 0);
+      vertex(-blck, 0, blck);
+      vertex(-blck, why*blck, blck);
+      vertex(0, why*blck, blck);
+      vertex(0, 0, blck);
+      
+      //fill(0, 255, 0);
+      vertex(0, 0, blck);
+      vertex(0, why*blck, blck);
+      vertex(0, why*blck, 0);
+      vertex(0, 0, 0);
+      endShape();
+      
+      //fill(0, 0, 255);
+      beginShape(QUAD);
+      
+      vertex(0, why*blck, 0);
+     vertex(0, why*blck, blck);
+     vertex(-blck, why*blck, blck);
+     vertex(-blck, why*blck, 0);
+     endShape();
+     
+     lineGradientRF(why*blck);
+     lineGradientLF(why*blck);
+     
+      pop();
+}
+
+void lineGradientRF(float why){
+  //push();
+  //translate(0, 0, 0);
+var numLines = 40;
+var initialSpacing = .1*blck;
+var totalHeight = why;
+var spacingIncrement = (totalHeight - initialSpacing) / ((numLines - 1) * numLines / 2); 
+var currentY = initialSpacing;
+for (var i = 0; i < numLines; i++) {
+  beginShape(LINES);
+  vertex(0, currentY, 0);
+  vertex(0, currentY, blck);
+  endShape();
+  // Increment vertical spacing
+  currentY += spacingIncrement * (i + 1);
+  }
+ //pop();
+}
+
+void lineGradientLF(float why){
+  //push();
+  //translate(0, 0, 0);
+var numLines = 40;
+var initialSpacing = .1*blck;
+var totalHeight = why;
+var spacingIncrement = (totalHeight - initialSpacing) / ((numLines - 1) * numLines / 2); 
+var currentY = initialSpacing;
+for (var i = 0; i < numLines; i++) {
+  beginShape(LINES);
+  vertex(-blck, currentY, 0);
+  vertex(0, currentY, 0);
+  endShape();
+  // Increment vertical spacing
+  currentY += spacingIncrement * (i + 1);
+  }
+ //pop();
+}
+
+
+
+
+///////////////////////////////
+//////////////////////////////
+
+
 void columnDraw(){
   for(int i =0;i<numLayer;i++){
        for(int k =0;k<numLayer;k++){
@@ -88,35 +173,6 @@ void columnDraw(){
     }
 }
 
-void drawColumnShell(float hex, float why, float zee, float bottom){
-      push();
-      translate(hex*blck, bottom*blck, zee*blck);
-      float fade = why/(blck*numLayer);
-      strokeWeight(1);//30  - 20*fade*fade*fade);
-      beginShape(QUAD);
-      fill(255, 0, 0);
-      vertex(-blck, 0, blck);
-      vertex(-blck, why*blck, blck);
-      vertex(0, why*blck, blck);
-      vertex(0, 0, blck);
-      
-      fill(0, 255, 0);
-      vertex(0, 0, blck);
-      vertex(0, why*blck, blck);
-      vertex(0, why*blck, 0);
-      vertex(0, 0, 0);
-      endShape();
-      
-      fill(0, 0, 255);
-      beginShape(QUAD);
-      
-      vertex(0, why*blck, 0);
-     vertex(0, why*blck, blck);
-     vertex(-blck, why*blck, blck);
-     vertex(-blck, why*blck, 0);
-     endShape();
-      pop();
-}
 
 void drawBoxShell(float hex, float why, float zee){
     push();
