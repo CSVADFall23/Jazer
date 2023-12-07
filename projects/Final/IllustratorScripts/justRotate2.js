@@ -70,12 +70,7 @@ function randLook(doc, grid, threshold, keyArray, iter, len){
                 grid[curKey].push(item);
                
             }
-        // if (grid[curKey].length === 3 && 
-        //     grid[curKey][0].note !== grid[curKey][1].note &&
-        //     grid[curKey][1].note !== grid[curKey][2].note &&
-        //     grid[curKey][2].note !== grid[curKey][0].note){
-        //         break;
-        //     }
+
         }
     
 
@@ -122,37 +117,16 @@ function groupAndRotate(doc, th){
 
 function drawItemsInCenter(){
       var d1 = dia([cenX - blck, cenY], 0);
-    //   d1.filled = true;
-    //   var col = new RGBColor();
-    //   col.red = Math.random()*255;
-    //   col.green = Math.random()*255;
-    //   col.blue =  Math.random()*255;
-    //   d1.fillColor = col;
-      //d1.note = toString(0);
+
       var k1 = Math.round(cenX) + ',' + Math.round(cenY);
       gridDist[k1] = gridDist[k1] || [];
-      //gridDist[k1].push(d1);
+    
 
       var d2 = dia([cenX + .5*blck, cenY + 0.5*blck*sq3], -120);
-    //   d2.filled = true;
-    //   var col = new RGBColor();
-    //   col.red = Math.random()*255;
-    //   col.green = Math.random()*255;
-    //   col.blue =  Math.random()*255;
-    //   d2.fillColor = col;
-      //d2.note = toString(-120);
-      //gridDist[k1].push(d2);
+
 
       var d3 = dia([cenX + 0.5*blck, cenY - 0.5*blck*sq3], 120);
-    //   d3.filled = true;
-    //   var col = new RGBColor();
-    //   col.red = Math.random()*255;
-    //   col.green = Math.random()*255;
-    //   col.blue =  Math.random()*255;
-    //   d3.fillColor = col; 
-     // d3.note = toString(120);
-      //gridDist[k1].push(d3);
-    //alert(gridDist[k1].length);
+
 }
    
 function drawTiles(doc, layers){   
@@ -195,11 +169,7 @@ function drawTiles(doc, layers){
     placeItemsAlongEdge(pp6, pp1, i+2, 120);
     
     }
-//     var keyArr = [];
-//     for(var key in gridDist){
-//         keyArr.push(key);
-//     }
-//    alert(keyArr.length);
+
 }
 
 
@@ -221,28 +191,23 @@ function placeItemsAlongEdge(anchor1, anchor2, numberOfItems, rot) {
 
         // Create a path item at the calculated position
         var diamond = dia([posX, posY], rot);
-        // diamond.filled = false;
-        // diamond.strokeColor = doc.defaultStrokeColor;
-        // diamond.strokeWidth = 1;
+      
     }
 }
 
 function dia(pos, rot){
     var dia = doc.pathItems.add();
-    // dia.strokeJoin = StrokeJoin.ROUNDENDJOIN;
-    // dia.strokeWidth = 0.5;
-    // dia.stroked = true;
-    // dia.filled = true;
+ 
     
     dia.setEntirePath([[0, sq3*blck], [-blck, 0], [0, -sq3*blck], [blck, 0]]);
     dia.closed = true;
     dia.translate(pos[0], pos[1]);
     dia.rotate(rot);
-   // dia.note = toString(rot);
+  
     var gridPos = dia.pathPoints[3].anchor;
     var key = Math.round(gridPos[0]) + ',' + Math.round(gridPos[1]);
     gridDist[key] = gridDist[key] || [];
-   // gridDist[key].push(dia);
+
    dia.remove();
    
 }
@@ -262,18 +227,6 @@ function vizGrid(doc, grid){
 
 }
 
-// function getPathItemCenter(pathItem) {
-//     var p1 = pathItem.pathPoints[0].anchor;
-//     var p2 = pathItem.pathPoints[1].anchor;
-//     var p3 = pathItem.pathPoints[2].anchor;
-//     var p4 = pathItem.pathPoints[3].anchor;
-
-//     // Calculate the center of the geometric bounds
-//     var centerX = (p1[0] + p2[0] + p3[0] + p4[0]) * 0.25;
-//     var centerY = (p1[1] + p2[1] + p3[1] + p4[1]) * 0.25;
-
-//     return [centerX, centerY];
-// }
 
 function getPathItemCenter(pathItem) {
     // For closed path items with 4 points, use geometric bounds
